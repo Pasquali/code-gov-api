@@ -1,4 +1,4 @@
-require('newrelic');
+// require('newrelic');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const getConfig = require("./config");
