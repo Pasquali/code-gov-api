@@ -9,9 +9,9 @@
   },
   "license": "CC0-1.0",
   "scripts": {
-    "start": "node app.js | ./node_modules/.bin/bunyan --color",
+    "start": "node app.js",
     "debug": "node --inspect app.js | ./node_modules/.bin/bunyan --color",
-    "index": "node scripts/index/index.js | /node_modules/.bin/bunyan --color",
+    "index": "node scripts/index/index.js",
     "index-debug": "node --inspect ./scripts/index/index.js | ./node_modules/.bin/bunyan --color",
     "index-repos": "node ./scripts/index/repo/index.js | ./node_modules/.bin/bunyan --color",
     "index-terms": "node ./scripts/index/term/index.js | ./node_modules/.bin/bunyan --color",

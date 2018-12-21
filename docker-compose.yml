@@ -5,15 +5,16 @@ services:
     image: 'codegov/code-gov-api:latest'
     container_name: 'code-gov-api'
     ports:
-      - "8080:3001/tcp"
+      - "3000:3000"
     environment:
       - NEW_RELIC_KEY='not_a_key'
       - GITHUB_API_KEY='not-a-key'
-      - ES_HOST=elasticsearch
+      - ES_HOST=http://elastic:changeme@elasticsearch:9200
+      - ES_URI=http://elastic:changeme@elasticsearch:9200
       - ES_PORT=9200
       - ES_USER=elastic
       - ES_PASSWORD=changeme
-      - NODE_ENV='production'
+      - NODE_ENV='dev'
       - USE_HSTS=false
       - HSTS_MAX_AGE=31536000
       - HSTS_PRELOAD=false
@@ -24,3 +25,5 @@ services:
   elasticsearch:
     image: "docker.elastic.co/elasticsearch/elasticsearch:5.6.9"
     container_name: 'code-gov-data'
+    ports:
+      - "9200:9200"
