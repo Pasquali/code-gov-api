@@ -27,3 +27,21 @@ services:
     container_name: 'code-gov-data'
     ports:
       - "9200:9200"
+  UI: 
+    build: ../code-gov-front-end/.
+    image: code-gov-ui
+    container_name: 'code-gove-ui'
+    ports:
+      - "8081:80"
+  Harvester: 
+    command: npm start
+    build: ../code-gov-harvester/.
+    image: code-gov-harvester
+    container_name: 'code-gov-harvester'
+    environment:
+      - ES_URI=http://elastic:changeme@elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    ports:
+      - "8082:100"
+      
