@@ -1,0 +1,37 @@
+version: '3'
+services:
+  api:
+    image: codecagovgovops311imagecontainerdev.azurecr.io/codecagov/code-gov-api
+    container_name: code-gov-api
+    restart: always
+    volumes:
+      - /usr/src/app
+    depends_on:
+      - elasticsearch
+  harvester: 
+    command: npm start
+    image: codecagovgovops311imagecontainerdev.azurecr.io/codecagov/code-gov-harvester
+    container_name: code-gov-harvester
+    ports:
+      - 100
+    depends_on:
+      - elasticsearch
+  ui: 
+    image: codecagovgovops311imagecontainerdev.azurecr.io/codecagov/code-gov-ui
+    restart: always
+    container_name: code-gov-ui
+    ports:
+      - 8081:80
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    container_name: code-gov-data
+    ports:
+      - 9200

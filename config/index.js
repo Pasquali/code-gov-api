@@ -33,7 +33,7 @@ function getPort(cloudFoundryEnv={}) {
     ? process.env.PORT
     : cloudFoundryEnv.port
       ? cloudFoundryEnv.port
-      : 3000;
+      : 6001;
 }
 
 /**
